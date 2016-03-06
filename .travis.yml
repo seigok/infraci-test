@@ -1,0 +1,16 @@
+sudo: required
+
+language: ruby
+
+services:
+  - docker
+
+env:
+  - TARGET_CONTAINER_ID=test-container
+
+before_script:
+  - docker build -t zabbix3.0-test .
+  - docker run -d --name $TARGET_CONTAINER_ID zabbix3.0-test
+
+script:
+  - bundle exec rspec
