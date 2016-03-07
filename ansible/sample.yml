@@ -6,7 +6,7 @@
       docker:
         name: "{{ container_name }}"
         image: centos:latest
-        docker_api_version: 1.20
+        docker_api_version: "1.20"
         pull: missing
         tty: yes
         privileged: yes
