@@ -9,8 +9,11 @@ env:
   - TARGET_CONTAINER_ID=test-container
 
 before_script:
+  - python --version
   - docker build -t zabbix3.0-test .
   - docker run -d --name $TARGET_CONTAINER_ID zabbix3.0-test
-
+  - apt-get install python-pip
+  - pip install ansible
 script:
+  - ansible-playbook ansible/sample.yml --extra-vars "container_name=$TARGET_CONTAINER_ID"
   - bundle exec rspec

@@ -1,0 +1,12 @@
+- name: "Add container name to hosts"
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: add host
+      add_host: name={{ container_name }}
+- hosts: "{{ container_name }}"
+  connection: docker
+  tasks:
+  - name: install postfix
+    yum: name=postfix state=installed
+
