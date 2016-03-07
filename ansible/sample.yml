@@ -16,6 +16,8 @@
 - hosts: "{{ container_name }}"
   connection: docker
   tasks:
+  - name: install iproute
+    yum: name=iproute state=installed
   - name: install postfix
     yum: name=postfix state=installed
   - name: start postfix
