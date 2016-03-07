@@ -1,7 +1,15 @@
-- name: "Add container name to hosts"
+- name: "Add container"
   hosts: localhost
   connection: local
   tasks:
+    - name: run container
+      docker:
+        name: "{{ container_name }}"
+        image: centos:latest
+        pull: missing
+        tty: yes
+        privileged: yes
+        command: /sbin/init
     - name: add host
       add_host: name={{ container_name }}
 - hosts: "{{ container_name }}"
@@ -9,4 +17,5 @@
   tasks:
   - name: install postfix
     yum: name=postfix state=installed
-
+  - name: start postfix
+    service: name=postfix state=started
