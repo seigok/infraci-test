@@ -11,7 +11,7 @@ env:
 before_script:
   - docker build -t zabbix3.0-test .
   - docker run -d --name $TARGET_CONTAINER_ID zabbix3.0-test
-  - sudo apt-get install python-pip
+  - sudo apt-get -y install python-pip
   - sudo pip install ansible
   - ansible-playbook ansible/sample.yml --extra-vars "container_name=$TARGET_CONTAINER_ID"
 script:
