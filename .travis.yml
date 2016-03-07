@@ -11,6 +11,7 @@ env:
 before_script:
   - sudo apt-get -y install python-pip
   - sudo pip install ansible
+  - sudo pip install docker-py
   - ansible-playbook ansible/sample.yml --extra-vars "container_name=$TARGET_CONTAINER_ID"
 script:
   - bundle exec rspec
